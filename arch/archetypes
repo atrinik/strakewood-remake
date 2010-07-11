@@ -11122,7 +11122,7 @@ sub_type 0
 sys_object 1
 no_drop 1
 sp 12
-last_heal 25
+last_heal 3
 last_sp 0
 last_eat 1
 level 1
@@ -11137,7 +11137,7 @@ sub_type 0
 sys_object 1
 no_drop 1
 sp 14
-last_heal 25
+last_heal 3
 last_sp 0
 last_eat 1
 level 1
@@ -11152,7 +11152,7 @@ face skill.101
 sys_object 1
 no_drop 1
 sp 13
-last_heal 25
+last_heal 3
 last_sp 0
 last_eat 1
 level 1
@@ -21258,7 +21258,7 @@ fly_on 1
 speed 1
 wc 200
 wc_range 20
-dam 3
+dam 4
 flying 1
 end
 Object frostbolt
@@ -21284,7 +21284,7 @@ fly_on 1
 speed 1
 wc 200
 wc_range 20
-dam 3
+dam 4
 flying 1
 end
 Object forked_lightning
@@ -21311,7 +21311,7 @@ reflecting 1
 speed 1
 wc 200
 wc_range 20
-dam 3
+dam 4
 flying 1
 Dex 30
 Con 50
@@ -21340,7 +21340,7 @@ reflecting 1
 speed 1
 wc 200
 wc_range 20
-dam 3
+dam 4
 flying 1
 end
 Object negabolt
