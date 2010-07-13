@@ -967,17 +967,9 @@
 /items/armour/helmet/coif_chain.101
 /items/armour/helmet/coif_scale.101
 /items/armour/boots/combat_boots.101
-/intern/skills/construction/constr_altar.101
-/intern/skills/construction/constr_bookshelf.101
 /intern/skills/construction/constr_build.101
-/intern/skills/construction/constr_chest_large.101
-/intern/skills/construction/constr_desk.101
 /intern/skills/construction/constr_fireplace.101
-/intern/skills/construction/constr_floor_wood3a.101
-/intern/skills/construction/constr_floor_wood3b.101
-/intern/skills/construction/constr_rack.101
 /intern/skills/construction/constr_remove.101
-/intern/skills/construction/constr_sign.101
 /intern/skills/construction/constr_wall_wood.101
 /intern/skills/construction/constr_window.101
 /items/organic/bakery/cookie.101
