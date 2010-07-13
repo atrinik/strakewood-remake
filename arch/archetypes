@@ -9883,6 +9883,26 @@ no_pick 1
 type 79
 layer 4
 end
+Object wall_wood1_1
+editor_folder intern/OLD
+name wood wall
+face wall_wood.d.111
+blocksview 1
+type 77
+layer 5
+no_pick 1
+no_pass 1
+end
+Object wall_wood1_3
+editor_folder intern/OLD
+name wood wall
+face wall_wood.d.131
+blocksview 1
+type 77
+layer 5
+no_pick 1
+no_pass 1
+end
 Object base_info
 editor_folder intern/intern
 type 101
@@ -10953,6 +10973,212 @@ no_drop 1
 level 1
 exp 0
 sp 2
+end
+Object constr_build
+editor_folder intern/skills
+name construction builder
+type 52
+sub_type 2
+layer 3
+face constr_build.101
+weight 1500
+value 7550
+sp 3
+nrof 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_floor_wood3a
+editor_folder intern/skills
+name wood floor material
+type 10
+sub_type 1
+face constr_floor_wood3a.101
+slaying floor_wood3a
+layer 3
+value 1000
+weight 1000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_floor_wood3b
+editor_folder intern/skills
+name wood floor material
+type 10
+sub_type 1
+face constr_floor_wood3b.101
+slaying floor_wood3b
+layer 3
+value 1000
+weight 1000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_remove
+editor_folder intern/skills
+name construction destroyer
+type 52
+sub_type 1
+layer 3
+face constr_remove.101
+weight 1500
+value 5500
+sp 3
+nrof 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_wall_wood
+editor_folder intern/skills
+name wood wall material
+type 10
+sub_type 2
+face constr_wall_wood.101
+slaying wall_wood_3
+layer 3
+value 1200
+weight 1000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_window
+editor_folder intern/skills
+name window material
+type 10
+sub_type 4
+face constr_window.101
+slaying wall_wood_w_3
+layer 3
+value 2000
+weight 1000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_rack
+editor_folder intern/skills
+name rack container material
+type 10
+sub_type 3
+face constr_rack.101
+slaying rack.111
+layer 3
+value 10000
+weight 3000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_chest
+editor_folder intern/skills
+name large chest material
+type 10
+sub_type 3
+face constr_chest_large.101
+slaying chest_m
+layer 3
+value 10000
+weight 3000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_bookshelf
+editor_folder intern/skills
+name bookshelf material
+type 10
+sub_type 3
+face constr_bookshelf.101
+slaying shelf3a.111
+layer 3
+value 7500
+weight 2000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_desk
+editor_folder intern/skills
+name desk material
+type 10
+sub_type 3
+face constr_desk.101
+slaying desk2
+layer 3
+value 5000
+weight 1500
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_sign
+editor_folder intern/skills
+name sign material
+type 10
+sub_type 3
+face constr_sign.101
+slaying sign
+layer 3
+value 2000
+weight 1000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_altar
+editor_folder intern/skills
+name altar material
+type 10
+sub_type 3
+face constr_altar.101
+slaying altar_normal
+layer 3
+value 100000
+weight 10000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
+end
+Object constr_fireplace
+editor_folder intern/skills
+name fireplace material
+type 10
+sub_type 3
+face constr_fireplace.101
+slaying wmask_fire_on_1
+layer 3
+value 5000
+weight 1000
+nrof 1
+can_stack 1
+item_condition 100
+item_quality 100
+identified 1
 end
 Object skill_construction
 editor_folder intern/skills
@@ -37408,20 +37634,20 @@ layer 5
 no_pick 1
 no_pass 1
 end
-Object wall_wood1_1
+Object wall_wood_1
 editor_folder walls/wood
 name wood wall
-face wall_wood1.d.111
+face wall_wood.d.111
 blocksview 1
 type 77
 layer 5
 no_pick 1
 no_pass 1
 end
-Object wall_wood1_3
+Object wall_wood_3
 editor_folder walls/wood
 name wood wall
-face wall_wood1.d.131
+face wall_wood.d.131
 blocksview 1
 type 77
 layer 5
