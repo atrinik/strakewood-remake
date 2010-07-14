@@ -5391,6 +5391,35 @@
 	</attribute>
 </type>
 
+<type number="127" name="Map Event Object">
+	<ignore>
+		<attribute arch="sub_type" />
+		<attribute arch="damned" />
+		<ignore_list name="non_pickable" />
+		<ignore_list name="default_setting" />
+	</ignore>
+	<description>
+	<![CDATA[
+		Map event objects can hold scripts or other events triggered when
+		a certain action is performed map-wide, for example, player enters
+		the map, the map resets, player leaves the map, etc.
+	]]>
+	</description>
+	<attribute arch="sub_type" editor="map event ID" type="list_map_event">
+		Set the map event where this map event object should trigger.
+	</attribute>
+	<attribute arch="name" editor="plugin name" type="string">
+		Name of the plugin which should be triggered by this map event object.
+	</attribute>
+	<attribute arch="race" editor="script name" type="string">
+		Name of the script of data file we want submit to the plugin when
+		the map event is triggered.
+	</attribute>
+	<attribute arch="slaying" editor="map event option" type="string">
+		This string is given the map event as option string.
+	</attribute>
+</type>
+
 <type number="119" name="Waypoint Object">
 	<ignore>
 		<attribute arch="ac" />
