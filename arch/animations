@@ -1462,6 +1462,12 @@ anim button_trigger
 button_small.101
 button_small.102
 mina
+anim campfire
+campfire.101
+campfire.102
+campfire.103
+campfire.104
+mina
 anim cat_black
 facings 25
 trans.101
