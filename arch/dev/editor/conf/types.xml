@@ -5389,6 +5389,9 @@
 	<attribute arch="slaying" editor="event option" type="string">
 		This string is given the event as option string.
 	</attribute>
+	<attribute arch_begin="msg" arch_end="endmsg" editor="config" type="text">
+		Allows you to pass multi-line options to the event.
+	</attribute>
 </type>
 
 <type number="127" name="Map Event Object">
@@ -5417,6 +5420,9 @@
 	</attribute>
 	<attribute arch="slaying" editor="map event option" type="string">
 		This string is given the map event as option string.
+	</attribute>
+	<attribute arch_begin="msg" arch_end="endmsg" editor="config" type="text">
+		Allows you to pass multi-line options to the event.
 	</attribute>
 </type>
 
