@@ -1837,6 +1837,40 @@
 	</attribute>
 </type>
 
+<type number="11" name="Duplicator">
+	<ignore>
+		<ignore_list name="system_object" />
+		<ignore_list name="default_setting" />
+	</ignore>
+	<description>
+	<![CDATA[
+		When activated, a duplicator can duplicate, multiply or destroy a pile of
+		objects which lies somewhere on top of the duplicator.
+		The duplicator has one arch name specified as 'target arch',
+		and only objects of this archetype can be affected.
+		<br><br>
+		It will multiply the number of items in the pile, by the 'multiply factor'.
+		If the latter is set to zero, it will destroy objects.
+	]]>
+	</description>
+	<attribute arch="no_pick" value="1" type="fixed" />
+    <attribute arch="slaying" editor="target arch" type="string">
+        Only objects of matching archetype, lying on top of the duplicator
+        will be duplicated, multiplied or removed. All other objects will be
+        ignored.
+    </attribute>
+    <attribute arch="level" editor="multiply factor" type="int" min="-32768" max="32767" check_min="0" check_max="2">
+        The number of items in the target pile will be multiplied by this value.
+		If it is set to zero, all target objects will be destroyed.
+    </attribute>
+    <attribute arch="connected" editor="connection" type="int">
+        An activator (lever, altar, button, etc) with matching connection
+        value is able to trigger this duplicator. Be very careful that
+        players cannot abuse it to create endless amounts of money or other
+        valuable stuff!
+    </attribute>
+</type>
+
 <type number="66" name="Exit">
 	<ignore>
 		<ignore_list name="non_pickable" />
