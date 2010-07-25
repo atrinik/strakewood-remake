@@ -2017,16 +2017,6 @@
 			"none") to water, fire etc. Only creatures whith appropriate
 			terrain abilities can pass over this square.
 		</attribute>
-		<attribute arch="slow_move" editor="slow movement" type="int">
-			If &lt;slow movement&gt; is set to a value greater than zero,
-			all creatures moving over this spot will be slower than
-			normal.
-
-			&lt;slow movement&gt; 1 - rough terrain
-			&lt;slow movement&gt; 2 - very rough terrain
-			...
-			&lt;slow movement&gt; 7 - spider web (sticky as hell)
-		</attribute>
 	</section>
 	<attribute arch="unique" editor="unique floor" type="bool">
 		Unique floor means that any items dropped on that spot will be
@@ -2326,10 +2316,7 @@
 	</attribute>
 </type>
 
-<type number="88" name="Hazard Floor">
-	<required>
-		<attribute arch="is_floor" value="1" />
-	</required>
+<type number="88" name="Damager">
 	<ignore>
 		<attribute arch="damned" />
 		<ignore_list name="non_pickable" />
@@ -2337,41 +2324,45 @@
 	</ignore>
 	<description>
 	<![CDATA[
-		The best example for Hazard Floor is lava. It works like standard
-		floor, but damages all creatures standing on it.
-
-		Damage is taken in regular time intervals.
+		This object will do damage to all enemy creatures standing on it. It is
+		perfect for implementing things like lava.
+		<br><br>
+		Damage is taken in regular time intervals. Remember to set an attack type
+		accordingly.
 	]]>
 	</description>
 	<use>
 	<![CDATA[
-		The default lava for example does minor damage. But you can turn
-		it up so that your hazard floor poses a real threat.<br>
-		Like magic walls, such floors add a permanent thrill to your map.
-		You can use that to safely chase off too-weak players, or just
+		Like magic walls, damagers add a permanent thrill to your map.
+		You can use them to safely chase off weak players, or just
 		to have something different.
+		<br><br>
+		They can also be used to slow down any creatures standing on top of
+		them.
 	]]>
 	</use>
-	<attribute arch="is_floor" value="1" type="fixed" />
 	<attribute arch="lifesave" value="1" type="fixed" />
 	<attribute arch="walk_on" value="1" type="fixed" />
+	<attribute arch="level" value="1" type="fixed" />
+	<attribute arch="name" editor="name" type="string">
+		The name of the damager. This is so the player knows what is hitting them,
+		and in case they die, the killer's name.
+
+		Examples are 'lava', 'spikes', etc.
+	</attribute>
 	<attribute arch="dam" editor="base damage" type="int">
 		The &lt;base damage&gt; defines how much damage is inflicted to
 		the victim per hit. The final damage is influenced by several
-		other factors like the victim's resistance and level.
+		other factors like the victim's protections.
 	</attribute>
-	<attribute arch="wc" editor="weapon class" type="int">
-		&lt;weapon class&gt; improves the chance of hitting the victim.
-		Higher values are better.
+	<attribute arch="speed" editor="damaging speed" type="float">
+		Controls how often the damager hits creatures standing on top of it.
 
-		Usually, hazard floors like lave are supposed to hit the victim
-		all the time. Therefore, &lt;weapon class&gt; should be set to
-		something like 200 in such cases.
+		If 0, no damage will be done.
 	</attribute>
-	<attribute arch="level" editor="attack level" type="int">
-		I guess this value is supposed to work similar to monster levels.
-		But in fact, it does not seem to have an effect. Set any non-zero
-		value to be on the safe side.
+	<attribute arch="friendly" editor="friendly" type="bool">
+		If set, the damager will not attack friendly creatures (players, NPCs, etc)
+		but only monsters.
 	</attribute>
 	<section name="attack">
 		<attribute arch="attack_impact" editor="impact attack %" length="15" type="int" min="-100" max="100" />
@@ -2401,21 +2392,14 @@
 		<attribute arch="attack_internal" editor="internal attack %" length="15" type="int" min="-100" max="100" />
 	</section>
 	<section name="terrain">
-		<attribute arch="slow_move" editor="slow movement" type="int">
-			If &lt;slow movement&gt; is set to a value greater than zero,
-			all creatures moving over this spot will be slower than
-			normal.
-
-			&lt;slow movement&gt; 1 - rough terrain
-			&lt;slow movement&gt; 2 - very rough terrain
-			...
-			&lt;slow movement&gt; 7 - spider web (sticky as hell)
+		<attribute arch="slow_move" editor="slow movement" type="bool">
+			If set, 'slow movement penalty' will take effect.
+		</attribute>
+		<attribute arch="exp" editor="slow movement penalty" type="int">
+			If set to a value greater than zero, all creatures moving over this
+			spot will be slower than normal.
 		</attribute>
 	</section>
-	<attribute arch="unique" editor="unique floor" type="bool">
-		Unique floor means that any items dropped on that spot will be
-		saved byond map reset.
-	</attribute>
 </type>
 
 <type number="56" name="Holy Altar">
@@ -4849,7 +4833,7 @@
 	<attribute arch="fly_on" value="1" type="fixed" />
 </type>
 
-	<type number="138" name="Swamp">
+<type number="138" name="Swamp">
 	<ignore>
 		<ignore_list name="non_pickable" />
 		<ignore_list name="default_setting" />
@@ -4860,25 +4844,24 @@
 
 		When a player stands still on a swamp square for too long, he
 		will start to sink in and eventually drown and die. Items dropped
-		on the swamp sink in and dissapear.
+		on the swamp sink in and disappear.
 	]]>
 	</description>
 	<attribute arch="walk_on" value="1" type="fixed" />
 	<attribute arch="is_floor" value="1" type="fixed" />
 	<attribute arch="speed" editor="drowning speed" type="float">
-		The higher the &lt;drowning speed&gt;, the faster will players
-		and items sink into the swamp. Swamp with very high
-		&lt;drowning speed&gt; can be a nasty and unexpected death-trap.
+		The higher this value, the faster will players and items sink
+		into the swamp. Swamp with very high drowning speed can be a
+		nasty and unexpected death-trap.
+
 		Players should get a warning before such areas.
 	</attribute>
-	<attribute arch="slow_move" editor="slow movement" type="int">
-		If &lt;slow movement&gt; is set to a value greater than zero, all
-		creatures moving over this spot will be slower than normal.
-
-		&lt;slow movement&gt; 1 - rough terrain
-		&lt;slow movement&gt; 2 - very rough terrain
-		...
-		&lt;slow movement&gt; 5 - default for deep swamp
+	<attribute arch="slow_move" editor="slow movement" type="bool">
+		If set, 'slow movement penalty' will take effect.
+	</attribute>
+	<attribute arch="exp" editor="slow movement penalty" type="int">
+		If set to a value greater than zero, all creatures moving over this
+		spot will be slower than normal.
 	</attribute>
 </type>
 
