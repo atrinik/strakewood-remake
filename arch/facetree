@@ -1029,6 +1029,7 @@
 /items/weapon/hand_1h/pierce/dagger2.101
 /items/weapon/hand_1h/pierce/dagger_large.101
 /items/weapon/hand_1h/pierce/dagger_small.101
+/special/damager.101
 /mobs/animals/deer/deer.121
 /mobs/animals/deer/deer.122
 /mobs/animals/deer/deer.123
@@ -1580,6 +1581,7 @@
 /items/armour/mail/dsm_white.101
 /items/armour/mail/dsm_yellow.101
 /intern/dummy.111
+/special/duplicator.101
 /items/spells/dust_gen.101
 /intern/player/dwarf/dwarf.111
 /intern/player/dwarf/dwarf.112
