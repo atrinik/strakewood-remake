@@ -2377,7 +2377,7 @@
 	</use>
 	<attribute arch="lifesave" value="1" type="fixed" />
 	<attribute arch="walk_on" value="1" type="fixed" />
-	<attribute arch="level" value="1" type="fixed" />
+	<attribute arch="level" value="127" type="fixed" />
 	<attribute arch="name" editor="name" type="string">
 		The name of the damager. This is so the player knows what is hitting them,
 		and in case they die, the killer's name.
