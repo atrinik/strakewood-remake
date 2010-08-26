@@ -209,6 +209,9 @@
 		value between 0 and 4, the higher, the more light does the object
 		emit.
 	</attribute>
+	<attribute arch="z" editor="height" type="int">
+		Adjusts Y position of the object as it appears on the map.
+	</attribute>
 	<attribute arch="material_real" editor="material" type="list_material_real">
 		The material defines the exact material of which the object
 		consists. It is much more specific than &lt;material class&gt;,
@@ -604,6 +607,14 @@
 	<attribute arch="connected" editor="connection" type="int">
 		If a connection value is set, the altar will trigger all objects
 		with the same value when activated. This will only work once.
+	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
 	</attribute>
 	<attribute arch="last_eat" editor="connection flag1" type="bool">
 		Depending on the target object, setting this flag or not can have
@@ -1326,7 +1337,6 @@
 	]]>
 	</description>
 	<attribute arch="walk_on" value="1" type="fixed" />
-	<attribute arch="walk_off" value="1" type="fixed" />
 	<attribute arch="no_pick" value="1" type="fixed" />
 	<attribute arch="weight" editor="press weight" type="string">
 		The button is pressed (triggered), as soon as
@@ -1336,9 +1346,33 @@
 		Every time the button is pressed or released, all objects with
 		the same &lt;connection&gt; value are activated.
 	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 	<attribute arch="last_eat" editor="connection flag1" type="bool">
 		Depending on the target object, setting this flag or not can have
 		different effects. See the object you are connecting to this.
+	</attribute>
+	<attribute arch="connect_reset" editor="reset connection" type="bool">
+	<![CDATA[
+		Will reset the connection, so it will be triggered next time something
+		triggers the object, even if it was not released before. For example, if this is set:
+		<br>
+		1.) Player A moves onto a button. The connection of the button is triggered.
+		2.) Player B moves onto the same button, again the connection is triggered.
+		3.) Player A moves off the button, the connection is triggered.
+		<br>
+		Part 3 can be avoided if this option is combined with "walk off" unset.
+	]]>
+	</attribute>
+	<attribute arch="walk_off" editor="walk off" type="bool">
+		Whether to trigger the connection when the object is released. Do
+		not change unless "connection reset" is set.
 	</attribute>
 	<attribute arch_begin="msg" arch_end="endmsg" editor="description" type="text">
 		This text may describe the item.
@@ -1363,6 +1397,14 @@
 		the trigger button can't be triggered.
 	]]>
 	</description>
+	<attribute arch="exp" editor="reset time" type="int">
+		Being activated, the button will reset after "reset time"
+		ticks. After reset, the button is ready to be activated once
+		again. If 0, the button will never reset and won't be possible
+		to trigger again.
+
+		The default reset time is 30.
+	</attribute>
 </type>
 
 <type number="122" name="Container">
@@ -1525,6 +1567,14 @@
 		Whenever the connection value is activated, the creator gets
 		triggered.
 	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 	<attribute arch="lifesave" editor="infinite uses" type="bool">
 		If &lt;infinite uses&gt; is set, the creator will work
 		infinitely, regardless of the value in &lt;number of uses&gt;.
@@ -1635,6 +1685,14 @@
 	<attribute arch="connected" editor="connection" type="int">
 		If a connection value is set, the director will be turnable when
 		a handle or button is used.
+	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
 	</attribute>
 	<attribute arch="sp" editor="reflect to direction" type="list_direction">
 		Projectiles will leave the director flying in the selected
@@ -1868,7 +1926,15 @@
         value is able to trigger this duplicator. Be very careful that
         players cannot abuse it to create endless amounts of money or other
         valuable stuff!
-    </attribute>
+	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 </type>
 
 <type number="66" name="Exit">
@@ -1895,7 +1961,7 @@
 		Don't forget to give the player reliable hints about them though.
 	]]>
 	</use>
-	<attribute arch="slaying" editor="exit path" type="string">
+	<attribute arch="slaying" editor="exit path" type="map_path">
 		The exit path defines the map that the player is transferred to.
 
 		You can enter an absolute path, beginning with '/' (for example
@@ -2241,6 +2307,14 @@
 		identical &lt;connection&gt; value get activated. This only makes
 		sense together with &lt;blocking passage&gt; disabled.
 	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 	<attribute arch="pass_thru" editor="ethereal can pass" type="bool">
 		If no_pass (blocking passage) is set, no one can pass. If this
 		flag is set too, ethereal objects with the CAN_PASS_THRU flag can
@@ -2310,6 +2384,14 @@
 		Every time the handle is applied, all objects with the same
 		&lt;connection&gt; value are activated.
 	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 	<attribute arch="last_eat" editor="connection flag1" type="bool">
 		Depending on the target object, setting this flag or not can have
 		different effects. See the object you are connecting to this.
@@ -2377,7 +2459,6 @@
 	</use>
 	<attribute arch="lifesave" value="1" type="fixed" />
 	<attribute arch="walk_on" value="1" type="fixed" />
-	<attribute arch="level" value="127" type="fixed" />
 	<attribute arch="name" editor="name" type="string">
 		The name of the damager. This is so the player knows what is hitting them,
 		and in case they die, the killer's name.
@@ -2397,6 +2478,10 @@
 	<attribute arch="friendly" editor="friendly" type="bool">
 		If set, the damager will not attack friendly creatures (players, NPCs, etc)
 		but only monsters.
+	</attribute>
+	<attribute arch="level" editor="level" type="int">
+		Level of the damager. Affects the chance for the damager to miss
+		(same chance as spells).
 	</attribute>
 	<section name="attack">
 		<attribute arch="attack_impact" editor="impact attack %" length="15" type="int" min="-100" max="100" />
@@ -2895,6 +2980,35 @@
 	</attribute>
 </type>
 
+<type number="28" name="Magic Mirror">
+	<ignore>
+		<ignore_list name="non_pickable" />
+		<ignore_list name="default_setting" />
+	</ignore>
+	<description>
+	<![CDATA[
+		Magic mirror are objects that can "reflect" what is happening on
+		another map. They can be used to create towers, from which if you
+		look outside you'll see the terrain and other players (but you won't
+		be able to target them or say things to them, as they won't hear you).
+	]]>
+	</description>
+	<attribute arch="slaying" editor="map" type="map_path">
+		The map path the magic mirror is pointing to. Can be either absolute
+		or relative map path.
+
+		If not set, the current map path is used.
+	</attribute>
+	<attribute arch="hp" editor="X position" type="int">
+		X position this magic mirror reflects objects of. -1 means it will
+		use the mirror's X.
+	</attribute>
+	<attribute arch="sp" editor="Y position" type="int">
+		Y position this magic mirror reflects objects of. -1 means it will
+		use the mirror's Y.
+	</attribute>
+</type>
+
 <type number="62" name="Magic Wall">
 	<ignore>
 		<ignore_list name="non_pickable" />
@@ -2946,6 +3060,14 @@
 		Every time the &lt;connection&gt; value is triggered, the wall
 		will cast it's spell. You should set &lt;casting speed&gt; to
 		zero, or this won't have much visible effect.
+	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
 	</attribute>
 	<attribute arch="maxsp" editor="turn steps" type="int">
 		If set and a connected object without "last_eat 1" gives signal,
@@ -3602,6 +3724,14 @@
 		If you set this, you should also set "speed" and "spawn chance"
 		to 0.
 	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 </type>
 
 <type number="83" name="Spawn Point Monster">
@@ -3834,12 +3964,35 @@
 		When the pedestal is triggered, all objects with the same
 		connection value get activated.
 	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 	<attribute arch="last_eat" editor="connection flag1" type="bool">
 		Depending on the target object, setting this flag or not can have
 		different effects. See the object you are connecting to this.
 	</attribute>
+	<attribute arch="connect_reset" editor="reset connection" type="bool">
+	<![CDATA[
+		Will reset the connection, so it will be triggered next time something
+		triggers the object, even if it was not released before. For example, if this is set:
+		<br>
+		1.) Player A moves onto a pedestal. The connection of the pedestal is triggered.
+		2.) Player B moves onto the same pedestal, again the connection is triggered.
+		3.) Player A moves off the pedestal, the connection is triggered.
+		<br>
+		Part 3 can be avoided if this option is combined with "walk off" unset.
+	]]>
+	</attribute>
+	<attribute arch="walk_off" editor="walk off" type="bool">
+		Whether to trigger the connection when the object is released. Do
+		not change unless "connection reset" is set.
+	</attribute>
 	<attribute arch="walk_on" value="1" type="fixed" />
-	<attribute arch="walk_off" value="1" type="fixed" />
 </type>
 
 <type number="32" name="Trigger Pedestal">
@@ -3872,6 +4025,14 @@
 		not use gates, because many other players could sneak in.
 	]]>
 	</use>
+	<attribute arch="exp" editor="reset time" type="int">
+		Being activated, the pedestal will reset after "reset time"
+		ticks. After reset, the pedestal is ready to be activated once
+		again. If 0, the pedestal will never reset and won't be possible
+		to trigger again.
+
+		The default reset time is 30.
+	</attribute>
 </type>
 
 <type number="94" name="Pit">
@@ -3904,7 +4065,15 @@
 		When a &lt;connection&gt; value is set, the pit can be
 		opened/closed by activating the connection.
 	</attribute>
-	<attribute arch="slaying" editor="exit path" type="string">
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
+	<attribute arch="slaying" editor="exit path" type="map_path">
 		The exit path defines the map that the player is transferred to.
 
 		You can enter an absolute path, beginning with '/' (for example
@@ -4703,6 +4872,14 @@
 		magic mouth this way, the message will not only be printed to one
 		player, but all players on the current map.
 	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
+	</attribute>
 	<attribute arch="walk_on" editor="activate by walking" type="bool">
 		If set, the player gets the message when walking ontop of the
 		object. This is the typical configuration for a magic mouth: The
@@ -4916,7 +5093,7 @@
 		different locations on the same map.
 	]]>
 	</description>
-	<attribute arch="slaying" editor="exit path" type="string">
+	<attribute arch="slaying" editor="exit path" type="map_path">
 		The exit path defines the map that the player is transferred to.
 
 		You can enter an absolute path, beginning with '/' (for example
@@ -4952,6 +5129,14 @@
 		If a connection value is set, the teleporter will be activated
 		whenever the connection is triggered. To use this properly,
 		&lt;activation speed&gt; must be zero.
+	</attribute>
+	<attribute arch="connect_no_release" editor="ignore connection release" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being unpressed) was released will be ignored.
+	</attribute>
+	<attribute arch="connect_no_push" editor="ignore connection push" type="bool">
+		If set, connection triggers that were done because something (such
+		as a button being pressed) was pushed will be ignored.
 	</attribute>
 	<attribute arch="speed" editor="activation speed" type="float">
 		If the &lt;activation speed&gt; is nonzero, the teleporter will
@@ -4999,7 +5184,7 @@
 		weight surpassing this value, then the trapdoor will open and
 		things start falling through.
 	</attribute>
-	<attribute arch="slaying" editor="exit path" type="string">
+	<attribute arch="slaying" editor="exit path" type="map_path">
 		The exit path defines the map that the player is transferred to.
 
 		You can enter an absolute path, beginning with '/' (for example
@@ -5396,14 +5581,14 @@
 	<attribute arch="sub_type" editor="event ID" type="list_event">
 		Set the event where this event object should trigger.
 	</attribute>
-	<attribute arch="name" editor="plugin name" type="string">
+	<attribute arch="name" editor="plugin" type="string">
 		Name of the plugin which should be triggered by this event object.
 	</attribute>
-	<attribute arch="race" editor="script name" type="string">
+	<attribute arch="race" editor="script" type="script_file">
 		Name of the script of data file we want submit to the plugin when
 		the event is triggered.
 	</attribute>
-	<attribute arch="slaying" editor="event option" type="string">
+	<attribute arch="slaying" editor="event" type="string">
 		This string is given the event as option string.
 	</attribute>
 	<attribute arch_begin="msg" arch_end="endmsg" editor="config" type="text">
@@ -5425,17 +5610,17 @@
 		the map, the map resets, player leaves the map, etc.
 	]]>
 	</description>
-	<attribute arch="sub_type" editor="map event ID" type="list_map_event">
+	<attribute arch="sub_type" editor="event ID" type="list_map_event">
 		Set the map event where this map event object should trigger.
 	</attribute>
-	<attribute arch="name" editor="plugin name" type="string">
+	<attribute arch="name" editor="plugin" type="string">
 		Name of the plugin which should be triggered by this map event object.
 	</attribute>
-	<attribute arch="race" editor="script name" type="string">
+	<attribute arch="race" editor="script" type="script_file">
 		Name of the script of data file we want submit to the plugin when
 		the map event is triggered.
 	</attribute>
-	<attribute arch="slaying" editor="map event option" type="string">
+	<attribute arch="slaying" editor="option" type="string">
 		This string is given the map event as option string.
 	</attribute>
 	<attribute arch_begin="msg" arch_end="endmsg" editor="config" type="text">
@@ -5470,7 +5655,7 @@
 		Name of the next waypoint to go to when this is reached. Use this
 		to chain together several waypoints.
 	</attribute>
-	<attribute arch="slaying" editor="destination map" type="string">
+	<attribute arch="slaying" editor="destination map" type="map_path">
 		Path to destination map. Leave blank to use current map.
 
 		You can enter an absolute path, beginning with '/' (for example
