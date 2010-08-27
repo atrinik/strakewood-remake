@@ -3007,6 +3007,18 @@
 		Y position this magic mirror reflects objects of. -1 means it will
 		use the mirror's Y.
 	</attribute>
+	<attribute arch="last_eat" editor="height adjust" type="int">
+		How much to adjust height of objects using height on the mirrored tile
+		by.
+	</attribute>
+	<attribute arch="maxhp" editor="X adjust" type="int">
+		Value to adjust X position of the tile being mirrored. Useful if the
+		"X position" is set to -1.
+	</attribute>
+	<attribute arch="maxsp" editor="Y adjust" type="int">
+		Value to adjust Y position of the tile being mirrored. Useful if the
+		"Y position" is set to -1.
+	</attribute>
 </type>
 
 <type number="62" name="Magic Wall">
