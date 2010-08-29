@@ -215,6 +215,9 @@
 	<attribute arch="zoom" editor="zoom" type="int" min="0" max="255">
 		How much to zoom the object on the map. 
 	</attribute>
+	<attribute arch="align" editor="align" type="int">
+		X align of the object on the map.
+	</attribute>
 	<attribute arch="material_real" editor="material" type="list_material_real">
 		The material defines the exact material of which the object
 		consists. It is much more specific than &lt;material class&gt;,
@@ -3027,6 +3030,9 @@
 	</attribute>
 	<attribute arch="path_attuned" editor="layers" type="bitmask_mirror_layer_zoom">
 		Layers to zoom.
+	</attribute>
+	<attribute arch="align" editor="align" type="int">
+		X align of the mirrored objects on the map.
 	</attribute>
 </type>
 
