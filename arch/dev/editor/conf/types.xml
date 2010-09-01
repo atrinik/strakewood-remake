@@ -213,7 +213,7 @@
 		Adjusts Y position of the object as it appears on the map.
 	</attribute>
 	<attribute arch="zoom" editor="zoom" type="int" min="0" max="255">
-		How much to zoom the object on the map. 
+		How much to zoom the object on the map.
 	</attribute>
 	<attribute arch="align" editor="align" type="int">
 		X align of the object on the map.
@@ -4965,6 +4965,10 @@
 	<attribute arch="splitting" editor="adjacent direction" type="bool">
 		If direction is set and this is set as well, two adjacent directions
 		will be considered instead of just the one direction.
+	</attribute>
+	<attribute arch="xrays" editor="use book GUI" type="bool">
+		If set, instead of printing the sign's contents to text window, use the
+		book GUI to show the message, using any fancy formatting books allow.
 	</attribute>
 	<attribute arch_begin="msg" arch_end="endmsg" editor="message" type="text">
 		This text will be displayed to the player.
