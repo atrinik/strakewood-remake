@@ -5619,7 +5619,7 @@
 		Name of the script of data file we want submit to the plugin when
 		the event is triggered.
 	</attribute>
-	<attribute arch="slaying" editor="event" type="string">
+	<attribute arch="slaying" editor="option" type="string">
 		This string is given the event as option string.
 	</attribute>
 	<attribute arch_begin="msg" arch_end="endmsg" editor="config" type="text">
